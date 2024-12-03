@@ -12,10 +12,11 @@ class CharacterCubit extends Cubit<CharacterState> {
 
   CharacterCubit(this.characterRepositry) : super(CharacterInitial());
 
-  Future<List<Character>> getAllCharacters() async {
-    final charactersList = await characterRepositry.getAllCharacters();
-    characters = charactersList;
-    emit(CharacterLoaded(characters));
-    return charactersList;
+  List<Character> getAllCharacters() {
+    characterRepositry.getAllCharacters().then((characters) {
+      emit(CharacterLoaded(characters));
+      this.characters = characters;
+    });
+    return characters;
   }
 }

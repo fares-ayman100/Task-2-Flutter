@@ -1,14 +1,16 @@
 class Character {
   late String name;
-  late int id;
+  late int charID;
   late String image;
   late String status;
   late String gender;
+  late String jobs;
   Character.fromJson(Map<String, dynamic> json) {
     name = json["name"];
-    id = json["id"];
+    charID = json["id"];
     image = json["image"];
     status = json["status"];
-    status = json["gender"];
+    gender = json["gender"];
+    gender = json["jobs"];
   }
 }

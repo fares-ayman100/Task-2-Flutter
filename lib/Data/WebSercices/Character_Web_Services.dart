@@ -7,7 +7,7 @@ class CharacterWebServices {
     BaseOptions options = BaseOptions(
       baseUrl: baseUrl,
       receiveDataWhenStatusError: true,
-      connectTimeout: const Duration(milliseconds: 15000),
+      connectTimeout: const Duration(milliseconds: 20000),
       receiveTimeout: const Duration(milliseconds: 20000),
     );
     dio = Dio(options);
@@ -17,6 +17,7 @@ class CharacterWebServices {
     try {
       Response response = await dio.get('character');
       print(response.data.toString());
+
       return response.data;
     } catch (e) {
       print(e.toString());
