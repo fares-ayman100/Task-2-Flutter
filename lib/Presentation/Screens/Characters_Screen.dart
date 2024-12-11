@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:breaking_bad/Business_Layer/cubit/character_cubit.dart';
-import 'package:breaking_bad/Data/Models/Character.dart';
-import 'package:breaking_bad/Presentation/Widget/Character_Item.dart';
-import 'package:breaking_bad/constants/MyCololrs.dart';
+import '../../Business_Layer/cubit/character_cubit.dart';
+import '../../Data/Models/Character.dart';
+import '../Widget/Character_Item.dart';
+import '../../constants/MyCololrs.dart';
+import 'package:flutter_offline/flutter_offline.dart';
 
 class CharacterScreen extends StatefulWidget {
   const CharacterScreen({super.key});
@@ -161,20 +162,54 @@ class _CharacterScreenState extends State<CharacterScreen> {
     );
   }
 
+  Widget builNoInternetWidget() {
+    return Center(
+      child: Container(
+        color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 20,
+            ),
+            const Text(
+              'Ca\'t connect check Internet',
+              style: TextStyle(fontSize: 25, color: Mycololrs.MyGry),
+            ),
+            Image.asset('assets/Images/internet.png')
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: is_Searching
-            ? const BackButton(
-                color: Mycololrs.MyGry,
-              )
-            : Container(),
-        backgroundColor: Mycololrs.MyYellow,
-        title: is_Searching ? _buildSearchField() : _buildAppBarTitle(),
-        actions: _builAppBarAction(),
-      ),
-      body: buildBlocWidget(),
-    );
+        appBar: AppBar(
+          leading: is_Searching
+              ? const BackButton(
+                  color: Mycololrs.MyGry,
+                )
+              : Container(),
+          backgroundColor: Mycololrs.MyYellow,
+          title: is_Searching ? _buildSearchField() : _buildAppBarTitle(),
+          actions: _builAppBarAction(),
+        ),
+        body: OfflineBuilder(
+            connectivityBuilder: (
+              BuildContext context,
+              List<ConnectivityResult> connectivity,
+              Widget child,
+            ) {
+              final bool connected =
+                  !connectivity.contains(ConnectivityResult.none);
+              if (connected) {
+                return buildBlocWidget();
+              } else {
+                return builNoInternetWidget();
+              }
+            },
+            child: showLoadingIndicator()));
   }
 }

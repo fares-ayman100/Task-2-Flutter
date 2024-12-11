@@ -1,4 +1,4 @@
-import 'package:breaking_bad/constants/Strings.dart';
+import '../../constants/Strings.dart';
 import 'package:dio/dio.dart';
 
 class CharacterWebServices {

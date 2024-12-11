@@ -1,6 +1,7 @@
-import 'package:breaking_bad/Data/Models/Character.dart';
-import 'package:breaking_bad/constants/MyCololrs.dart';
 import 'package:flutter/material.dart';
+
+import '../../Data/Models/Character.dart';
+import '../../constants/MyCololrs.dart';
 
 class CharacterDetailsScreen extends StatelessWidget {
   final Character character;
@@ -43,14 +44,14 @@ class CharacterDetailsScreen extends StatelessWidget {
       text: TextSpan(children: [
         TextSpan(
           text: titel,
-          style: TextStyle(
+          style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
               color: Mycololrs.MyWhite),
         ),
         TextSpan(
           text: value,
-          style: TextStyle(fontSize: 16, color: Mycololrs.MyWhite),
+          style: const TextStyle(fontSize: 16, color: Mycololrs.MyWhite),
         )
       ]),
       maxLines: 1,

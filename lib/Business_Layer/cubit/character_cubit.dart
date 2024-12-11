@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:breaking_bad/Data/Models/Character.dart';
-import 'package:breaking_bad/Data/Repositry/character_repositry.dart';
+import '../../Data/Models/Character.dart';
+import '../../Data/Repositry/character_repositry.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 

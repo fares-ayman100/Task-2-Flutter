@@ -1,5 +1,5 @@
-import 'package:breaking_bad/Data/Models/Character.dart';
-import 'package:breaking_bad/Data/WebSercices/Character_Web_Services.dart';
+import '../Models/Character.dart';
+import '../WebSercices/Character_Web_Services.dart';
 
 class CharacterRepositry {
   final CharacterWebServices characterWebServices;
